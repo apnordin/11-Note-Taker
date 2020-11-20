@@ -40,18 +40,21 @@ app.get("/api/notes", function (req, res) {
 
 app.post("/api/notes", function (req, res) {
     var newNotes = req.body;
-
-    console.log(newNotes);
-
     notesdb.push(newNotes);
-
-    res.json(newNotes);
+    // res.json(newNotes);
 
     console.log(notesdb);
 
+    fs.writeFile("./db/db.json", JSON.stringify(notesdb), function (err) {
+        if (err) {
+            throw err;
+        }
+    });
 
-
+    return res.json(notesdb);
 });
+
+
 
 
 //Server Start
