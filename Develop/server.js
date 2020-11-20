@@ -20,6 +20,23 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+// API Routes
+
+var notesdb = require("./db/db")
+
+console.log(notesdb);
+
+app.get("/api/notes", function (req, res) {
+    res.json(notesdb);
+});
+
+app.post("/api/notes", function (req, res) {
+    notesdb.push(req.body);
+    res.json(true);
+});
+
+
+
 
 //Server Start
 app.listen(PORT, function () {
