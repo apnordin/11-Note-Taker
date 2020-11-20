@@ -1,10 +1,9 @@
-console.log('testing 123');
-
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
 const $noteList = $(".list-container .list-group");
+
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
@@ -24,6 +23,7 @@ const saveNote = (note) => {
     data: note,
     method: "POST",
   });
+
 };
 
 // A function for deleting a note from the db
@@ -103,8 +103,11 @@ const handleRenderSaveBtn = function () {
   }
 };
 
+
+
 // Renders the list of note titles
 const renderNoteList = (notes) => {
+  // console.log('Notes: ', notes);
   $noteList.empty();
 
   const noteListItems = [];
