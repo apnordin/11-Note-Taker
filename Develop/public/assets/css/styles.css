@@ -4,6 +4,10 @@ html, body {
   padding: 0;
 }
 
+.alert1 {
+  color: white;
+}
+
 .save-note {
   display: none;
 }

@@ -47,11 +47,16 @@ app.post("/api/notes", function (req, res) {
 });
 
 app.delete("/api/notes/:id", function (req, res) {
-    var deleteNoteid = req.params.id;
-    console.log("ID of note to delete::", deleteNoteid);
+    var deleteNoteId = req.params.id;
+    console.log("ID of note to delete::", deleteNoteId);
 
-    // var deletedNote = notesdb.filter(notesdb => notesdb !== deleteNoteid);
-    // console.log('Deleted note: ', deletedNote)
+    var deleteNote = notesdb.map(function (item) {
+        return item.id;
+    }).indexOf(deleteNoteId);
+
+    notesdb.splice(deleteNote);
+
+    console.log('NotesDB: ', notesdb);
 
 });
 
