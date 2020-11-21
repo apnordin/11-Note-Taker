@@ -22,15 +22,20 @@ app.use(express.static("public"));
 var notesdb = require("./db/db")
 
 app.get("/api/notes", function (req, res) {
-    console.log(notesdb);
     return res.json(notesdb);
 });
 
 app.post("/api/notes", function (req, res) {
     var newNote = req.body;
-    notesdb.push(newNote);
 
-    console.log(notesdb);
+    console.log('number of notes prior to saving:', notesdb.length);
+    console.log('old notes: ', notesdb);
+
+    newNote.id = notesdb.length + 1;
+
+    notesdb.push(newNote);
+    console.log('number of notes after saving:', newNote.id);
+    console.log('new notes: ', notesdb);
 
     fs.writeFile("./db/db.json", JSON.stringify(notesdb), function (err) {
         if (err) {
@@ -39,6 +44,15 @@ app.post("/api/notes", function (req, res) {
     });
 
     res.send(notesdb);
+});
+
+app.delete("/api/notes/:id", function (req, res) {
+    var deleteNoteid = req.params.id;
+    console.log("ID of note to delete::", deleteNoteid);
+
+    // var deletedNote = notesdb.filter(notesdb => notesdb !== deleteNoteid);
+    // console.log('Deleted note: ', deletedNote)
+
 });
 
 

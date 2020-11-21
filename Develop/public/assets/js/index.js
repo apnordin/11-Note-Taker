@@ -103,8 +103,6 @@ const handleRenderSaveBtn = function () {
   }
 };
 
-
-
 // Renders the list of note titles
 const renderNoteList = (notes) => {
   // console.log('Notes: ', notes);
