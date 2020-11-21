@@ -17,6 +17,18 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
+// HTML Routes
+
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "public/notes.html"));
+});
+
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
+
+
 // API Routes
 
 var notesdb = require("./db/db")
@@ -58,17 +70,6 @@ app.delete("/api/notes/:id", function (req, res) {
 
     console.log('NotesDB: ', notesdb);
 
-});
-
-
-// HTML Routes
-
-app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "public/notes.html"));
-});
-
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 
