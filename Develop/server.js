@@ -28,7 +28,6 @@ app.get("/", function (req, res) {
 });
 
 
-
 // API Routes
 
 var notesdb = require("./db/db")
